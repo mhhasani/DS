@@ -123,3 +123,5 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'Home'
 LOGOUT_REDIRECT_URL = 'Home' 
+
+ALLOWED_HOSTS = ['*']
