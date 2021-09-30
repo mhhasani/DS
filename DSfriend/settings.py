@@ -120,7 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/DSDrRahmani/DS/DSfriend/static'
+STATIC_ROOT = '/home/DSDrRahmani/DS/friend/static'
 LOGIN_REDIRECT_URL = 'Home'
 LOGOUT_REDIRECT_URL = 'Home' 
 
