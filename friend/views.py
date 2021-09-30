@@ -11,12 +11,14 @@ def Home(request):
     if user:
         user = User.objects.all().get(username = request.user)
     daneshjoo = Daneshjoo.objects.all()
-    context = {'daneshjoo':daneshjoo}
     f= open("daneshjooyan.txt","w+")
+    all=[]
     for daneshjoo in Daneshjoo.objects.all():
+        all.append([Friend.objects.all().get(daneshjoo=daneshjoo).friend.count(),daneshjoo])
         for F in Friend.objects.all().get(daneshjoo__id = daneshjoo.id).friend.all():
             f.write(f"{daneshjoo.id}\t{F.id}\r\n")
     f.close()
+    context = {'daneshjoo':all}
     return render(request, 'Home.html',context=context)
 
 @login_required

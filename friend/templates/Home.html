@@ -10,7 +10,7 @@
     <hr>
     <h1>دانشجو ها</h1>
     {% for d in daneshjoo%}
-    <a href="{% url 'add_friend' d.id %}"><h1>{{d.id}}.{{d.name}}</h1></a>
+    <a href="{% url 'add_friend' d.1.id %}"><h1>{{d.1.id}}.{{d.1.name}}({{d.0}})</h1></a>
     {% endfor %}
 
 
