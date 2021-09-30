@@ -1,0 +1,10 @@
+<html dir="rtl">
+    <h1>بعد از وارد کردن هر اسم اینتر بزنید</h1>
+    <form method="POST" class="post-form" dir = 'rtl'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default" >ذخيره تغييرات</button>
+        <br>
+        <a href="{% url 'Home' %}">مشاهده دانشجو ها</a>
+    </form>
+</html>

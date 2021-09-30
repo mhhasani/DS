@@ -1,0 +1,17 @@
+<html>
+    <form method="POST" class="post-form" dir = 'rtl'>
+        {% csrf_token %}
+        <h1>دوستان {{daneshjoo.name}} ({{daneshjoo.id}})</h1>
+        {{ Friends.management_form }}
+        {% for f in Friends %}
+            {{ f.as_p }}
+        {% endfor %}
+        <button type="submit" class="save btn btn-default" >ذخيره تغييرات</button>
+        <br>
+        <h2>کسانی که شما را به عنوان دوست انتخاب کردند:</h2>
+        {%for d in doostan%}
+        <a href="{% url 'add_friend' d.daneshjoo.id %}"><h3>{{d.daneshjoo.name}} ({{d.daneshjoo.id}})</h3></a>
+        {% endfor %}
+        <a href="{% url 'Home' %}">مشاهده دانشجو ها</a>
+    </form>
+</html>

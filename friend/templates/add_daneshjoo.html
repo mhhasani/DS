@@ -1,0 +1,12 @@
+<html>
+    <form method="POST" class="post-form" dir = 'rtl'>
+        {% csrf_token %}
+        {{ Daneshjoos.management_form }}
+        {% for d in Daneshjoos %}
+            {{ d.as_p }}
+        {% endfor %}
+        <button type="submit" class="save btn btn-default" >ذخيره تغييرات</button>
+        <br>
+        <a href="{% url 'Home' %}">مشاهده دانشجو ها</a>
+    </form>
+</html>
