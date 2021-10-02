@@ -3,6 +3,11 @@ from .models import *
 
 class add_daneshjoo_form(forms.Form):
     name = forms.CharField()
+    gender_choice = (
+        ("male" , "male"),
+        ("female" , "female"),
+    )
+    gender = forms.ChoiceField(choices=gender_choice)
     def clean(self):
         cd = self.cleaned_data
         daneshjoos = Daneshjoo.objects.all()

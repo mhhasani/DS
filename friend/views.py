@@ -5,6 +5,12 @@ from .forms import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
+# Import mimetypes module
+import mimetypes
+# import os module
+import os
+# Import HttpResponse module
+from django.http.response import HttpResponse
 
 def Home(request):
     user = User.objects.all().filter(username = request.user)
@@ -20,6 +26,25 @@ def Home(request):
     f.close()
     context = {'daneshjoo':all}
     return render(request, 'Home.html',context=context)
+
+@login_required
+def download_file(request):
+    # Define Django project base directory
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # Define text file name
+    filename = 'daneshjooyan.txt'
+    # Define the full file path
+    filepath = '/home/DSDrRahmani/daneshjooyan.txt'
+    # Open the file for reading content
+    path = open(filepath, 'r')
+    # Set the mime type
+    mime_type, _ = mimetypes.guess_type(filepath)
+    # Set the return value of the HttpResponse
+    response = HttpResponse(path, content_type=mime_type)
+    # Set the HTTP header for sending to browser
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    # Return the response value
+    return response
 
 @login_required
 def add_daneshjoo(request,length):
@@ -65,7 +90,7 @@ def add_daneshjoo2(request):
                     word =''
                     continue
                 if i == '\n':
-                    continue  
+                    continue
                 word+=i
             name.append(word)
             for i in name:
@@ -94,7 +119,7 @@ def add_friend(request,id):
         FriendFormSet = formset_factory(add_friend_form,extra=3)
         my_friend = Friend.objects.all().filter(daneshjoo=daneshjoo)
         for F in my_friend:
-            for f in F.friend.all(): 
+            for f in F.friend.all():
                 FRIENDS.append(Daneshjoo.objects.all().get(id = f.id))
         Friends = FriendFormSet()
         for i in range(len(FRIENDS)):
